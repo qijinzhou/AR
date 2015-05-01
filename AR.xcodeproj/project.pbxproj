@@ -14,6 +14,7 @@
 		E1E0A1321AF1E19C00F6E213 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E0A1301AF1E19C00F6E213 /* LaunchScreen.xib */; };
 		E1E0A13E1AF1E19C00F6E213 /* ARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A13D1AF1E19C00F6E213 /* ARTests.swift */; };
 		E1E0A1481AF341C700F6E213 /* BasicShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A1471AF341C700F6E213 /* BasicShaders.metal */; };
+		E1E0A17C1AF3591B00F6E213 /* VideoCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A17B1AF3591B00F6E213 /* VideoCameraController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		E1E0A13C1AF1E19C00F6E213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E0A13D1AF1E19C00F6E213 /* ARTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTests.swift; sourceTree = "<group>"; };
 		E1E0A1471AF341C700F6E213 /* BasicShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = BasicShaders.metal; sourceTree = "<group>"; };
+		E1E0A17B1AF3591B00F6E213 /* VideoCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCameraController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				E1E0A1301AF1E19C00F6E213 /* LaunchScreen.xib */,
 				E1E0A1231AF1E19C00F6E213 /* Supporting Files */,
 				E1E0A1471AF341C700F6E213 /* BasicShaders.metal */,
+				E1E0A17B1AF3591B00F6E213 /* VideoCameraController.swift */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			files = (
 				E1E0A1281AF1E19C00F6E213 /* GameViewController.swift in Sources */,
 				E1E0A1261AF1E19C00F6E213 /* AppDelegate.swift in Sources */,
+				E1E0A17C1AF3591B00F6E213 /* VideoCameraController.swift in Sources */,
 				E1E0A1481AF341C700F6E213 /* BasicShaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +419,7 @@
 				E1E0A1431AF1E19C00F6E213 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1E0A1441AF1E19C00F6E213 /* Build configuration list for PBXNativeTarget "ARTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +428,7 @@
 				E1E0A1461AF1E19C00F6E213 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
