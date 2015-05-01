@@ -96,4 +96,9 @@ class VideoCameraController: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
             self.session.stopRunning()
         })
     }
+
+    func createPreviewLayer() -> AVCaptureVideoPreviewLayer
+    {
+        return AVCaptureVideoPreviewLayer.layerWithSession(session) as! AVCaptureVideoPreviewLayer
+    }
 }

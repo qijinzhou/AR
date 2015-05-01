@@ -34,6 +34,8 @@ class GameViewController: UIViewController
     var vertexBuffer: MTLBuffer! = nil
     var vertexColorBuffer: MTLBuffer! = nil
 
+    var videoCameraController: VideoCameraController! = nil
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -75,6 +77,12 @@ class GameViewController: UIViewController
 
         timer = CADisplayLink(target: self, selector: Selector("renderLoop"))
         timer.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+
+        videoCameraController = VideoCameraController()
+        let previewLayer = videoCameraController.createPreviewLayer()
+        previewLayer.frame = view.bounds
+        view.layer.addSublayer(previewLayer)
+        videoCameraController.start()
     }
 
     override func viewDidLayoutSubviews()
@@ -89,6 +97,8 @@ class GameViewController: UIViewController
 
     deinit
     {
+        videoCameraController.stop()
+
         timer.invalidate()
     }
 
@@ -129,7 +139,7 @@ class GameViewController: UIViewController
         let renderPassDescriptor = MTLRenderPassDescriptor()
         renderPassDescriptor.colorAttachments[0].texture = drawable.texture
         renderPassDescriptor.colorAttachments[0].loadAction = .Clear
-        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 0.65, green: 0.65, blue: 0.65, alpha: 1.0)
+        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 0, green: 0, blue: 0, alpha: 0)
         renderPassDescriptor.colorAttachments[0].storeAction = .Store
 
         let renderEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor)!
