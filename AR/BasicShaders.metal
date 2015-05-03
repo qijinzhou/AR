@@ -9,21 +9,28 @@
 #include <metal_stdlib>
 using namespace metal;
 
-struct Vertex
+struct VertexIn
 {
-    float4 position [[position]];
-    float4 color;
+    packed_float3 position;
+    packed_float2 textureCoord;
 };
 
-vertex Vertex basicVertexShader(uint vid [[ vertex_id ]], constant packed_float4* position [[ buffer(0) ]], constant packed_float4* color [[ buffer(1) ]])
+struct VertexOut
 {
-    Vertex v;
-    v.position = position[vid];
-    v.color = color[vid];
-    return v;
+    float4 position [[position]];
+    float2 textureCoord;
+};
+
+vertex VertexOut basicVertexShader(uint vid[[vertex_id]], const device VertexIn* vIn[[buffer(0)]])
+{
+    VertexOut vOut;
+    vOut.position = float4(vIn[vid].position, 1.0);
+    vOut.textureCoord = vIn[vid].textureCoord;
+    return vOut;
 }
 
-fragment half4 basicFragmentShader(Vertex v [[stage_in]])
+fragment float4 basicFragmentShader(VertexOut v[[stage_in]], texture2d<float> texture2D[[texture(0)]])
 {
-    return half4(v.color);
+    constexpr sampler textureSampler(filter::linear);
+    return texture2D.sample(textureSampler, v.textureCoord);
 }

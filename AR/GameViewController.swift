@@ -10,7 +10,7 @@ import UIKit
 import Metal
 import QuartzCore
 
-class GameViewController: UIViewController
+class GameViewController: UIViewController, MetalTextureReceiver
 {
     let device = { MTLCreateSystemDefaultDevice() }()
     let metalLayer = { CAMetalLayer() }()
@@ -20,21 +20,21 @@ class GameViewController: UIViewController
     var pipelineState: MTLRenderPipelineState! = nil
 
     let vertexData: [Float] = [
-         0,  1, 0, 1,
-        -1, -1, 0, 1,
-         1, -1, 0, 1,
-    ]
+    //     x,    y,    z,      s,    t
+        -1.0, -1.0,  0.0,    1.0,  1.0,
+        -1.0,  1.0,  0.0,    1.0,  0.0,
+         1.0,  1.0,  0.0,    0.0,  0.0,
 
-    let vertexColorData: [Float] = [
-        1, 0, 0, 1,
-        0, 1, 0, 1,
-        0, 0, 1, 1,
+        -1.0, -1.0,  0.0,    1.0,  1.0,
+         1.0,  1.0,  0.0,    0.0,  0.0,
+         1.0, -1.0,  0.0,    0.0,  1.0,
     ]
-
     var vertexBuffer: MTLBuffer! = nil
-    var vertexColorBuffer: MTLBuffer! = nil
+    var texture: MTLTexture? = nil
 
     var videoCameraController: VideoCameraController! = nil
+
+    var videoFrameController: MetalVideoFrameController! = nil
 
     override func viewDidLoad()
     {
@@ -61,6 +61,7 @@ class GameViewController: UIViewController
         pipelineDescriptor.vertexFunction = vertexProgram
         pipelineDescriptor.fragmentFunction = fragmentProgram
         pipelineDescriptor.colorAttachments[0].pixelFormat = .BGRA8Unorm
+        pipelineDescriptor.sampleCount = 1
 
         var pipelineError : NSError?
         pipelineState = device.newRenderPipelineStateWithDescriptor(pipelineDescriptor, error: &pipelineError)
@@ -72,16 +73,17 @@ class GameViewController: UIViewController
         vertexBuffer = device.newBufferWithBytes(vertexData, length: vertexData.count * sizeofValue(vertexData[0]), options: nil)
         vertexBuffer.label = "vertices"
 
-        vertexColorBuffer = device.newBufferWithBytes(vertexColorData, length: vertexColorData.count * sizeofValue(vertexColorData[0]), options: nil)
-        vertexColorBuffer.label = "colors"
-
         timer = CADisplayLink(target: self, selector: Selector("renderLoop"))
         timer.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
 
-        videoCameraController = VideoCameraController()
-        let previewLayer = videoCameraController.createPreviewLayer()
-        previewLayer.frame = view.bounds
-        view.layer.addSublayer(previewLayer)
+        videoFrameController = MetalVideoFrameController(device: device, delegate:self)
+
+        videoCameraController = VideoCameraController(delegate: videoFrameController)
+
+//        let previewLayer = videoCameraController.createPreviewLayer()
+//        previewLayer.frame = view.bounds
+//        view.layer.addSublayer(previewLayer)
+
         videoCameraController.start()
     }
 
@@ -132,6 +134,11 @@ class GameViewController: UIViewController
     {
         self.update()
 
+        if (texture == nil)
+        {
+            return
+        }
+
         let commandBuffer = commandQueue.commandBuffer()
         commandBuffer.label = "command buffer"
 
@@ -144,12 +151,12 @@ class GameViewController: UIViewController
 
         let renderEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor)!
         renderEncoder.label = "render encoder"
-        renderEncoder.pushDebugGroup("draw triangle")
+        renderEncoder.pushDebugGroup("draw frame")
 
         renderEncoder.setRenderPipelineState(pipelineState)
         renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, atIndex: 0)
-        renderEncoder.setVertexBuffer(vertexColorBuffer, offset: 0, atIndex: 1)
-        renderEncoder.drawPrimitives(.Triangle, vertexStart: 0, vertexCount: vertexData.count, instanceCount: 1)
+        renderEncoder.setFragmentTexture(texture, atIndex: 0)
+        renderEncoder.drawPrimitives(.Triangle, vertexStart: 0, vertexCount: vertexData.count, instanceCount: 2)
 
         renderEncoder.popDebugGroup()
         renderEncoder.endEncoding()
@@ -169,5 +176,10 @@ class GameViewController: UIViewController
 
     func update()
     {
+    }
+
+    func onTexture(texture: MTLTexture!)
+    {
+        self.texture = texture
     }
 }

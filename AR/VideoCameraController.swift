@@ -8,7 +8,7 @@
 
 import AVFoundation
 
-class VideoCameraController: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
+class VideoCameraController
 {
     var session: AVCaptureSession!
     var deviceInput: AVCaptureDeviceInput!
@@ -16,20 +16,18 @@ class VideoCameraController: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
 
     var queue: dispatch_queue_t!
 
-    override init()
+    init(delegate: AVCaptureVideoDataOutputSampleBufferDelegate!)
     {
-        super.init()
-
         session = AVCaptureSession()
         queue = dispatch_queue_create("VideoCameraController queue", DISPATCH_QUEUE_SERIAL)
 
         dispatch_async(queue,
         {
-            self.setup()
+            self.setup(delegate)
         })
     }
 
-    func setup()
+    func setup(delegate: AVCaptureVideoDataOutputSampleBufferDelegate!)
     {
         self.session.beginConfiguration()
 
@@ -61,7 +59,7 @@ class VideoCameraController: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
         self.deviceOutput.videoSettings = settings
         self.deviceOutput.alwaysDiscardsLateVideoFrames = true
 
-        self.deviceOutput.setSampleBufferDelegate(self, queue: self.queue)
+        self.deviceOutput.setSampleBufferDelegate(delegate, queue: self.queue)
 
         if (self.session.canAddOutput(self.deviceOutput))
         {

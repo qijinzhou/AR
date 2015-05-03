@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E13AB7C21AF57F9300DB3E87 /* MetalVideoFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */; };
 		E1E0A1261AF1E19C00F6E213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A1251AF1E19C00F6E213 /* AppDelegate.swift */; };
 		E1E0A1281AF1E19C00F6E213 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A1271AF1E19C00F6E213 /* GameViewController.swift */; };
 		E1E0A12D1AF1E19C00F6E213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1E0A12B1AF1E19C00F6E213 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalVideoFrameController.swift; sourceTree = "<group>"; };
 		E1E0A1201AF1E19C00F6E213 /* AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E0A1241AF1E19C00F6E213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E0A1251AF1E19C00F6E213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				E1E0A1231AF1E19C00F6E213 /* Supporting Files */,
 				E1E0A1471AF341C700F6E213 /* BasicShaders.metal */,
 				E1E0A17B1AF3591B00F6E213 /* VideoCameraController.swift */,
+				E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				E1E0A1281AF1E19C00F6E213 /* GameViewController.swift in Sources */,
 				E1E0A1261AF1E19C00F6E213 /* AppDelegate.swift in Sources */,
+				E13AB7C21AF57F9300DB3E87 /* MetalVideoFrameController.swift in Sources */,
 				E1E0A17C1AF3591B00F6E213 /* VideoCameraController.swift in Sources */,
 				E1E0A1481AF341C700F6E213 /* BasicShaders.metal in Sources */,
 			);
