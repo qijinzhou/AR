@@ -11,7 +11,7 @@ using namespace metal;
 
 struct VertexIn
 {
-    packed_float3 position;
+    packed_float2 position;
     packed_float2 textureCoord;
 };
 
@@ -24,7 +24,7 @@ struct VertexOut
 vertex VertexOut basicVertexShader(uint vid[[vertex_id]], const device VertexIn* vIn[[buffer(0)]])
 {
     VertexOut vOut;
-    vOut.position = float4(vIn[vid].position, 1.0);
+    vOut.position = float4(vIn[vid].position, 0.0, 1.0);
     vOut.textureCoord = vIn[vid].textureCoord;
     return vOut;
 }

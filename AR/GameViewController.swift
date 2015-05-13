@@ -20,14 +20,14 @@ class GameViewController: UIViewController, MetalTextureReceiver
     var pipelineState: MTLRenderPipelineState! = nil
 
     let vertexData: [Float] = [
-    //     x,    y,    z,      s,    t
-        -1.0, -1.0,  0.0,    1.0,  1.0,
-        -1.0,  1.0,  0.0,    1.0,  0.0,
-         1.0,  1.0,  0.0,    0.0,  0.0,
+    //     x,    y,    s,    t
+        -1.0, -1.0,  1.0,  1.0,
+        -1.0,  1.0,  0.0,  1.0,
+         1.0,  1.0,  0.0,  0.0,
 
-        -1.0, -1.0,  0.0,    1.0,  1.0,
-         1.0,  1.0,  0.0,    0.0,  0.0,
-         1.0, -1.0,  0.0,    0.0,  1.0,
+        -1.0, -1.0,  1.0,  1.0,
+         1.0,  1.0,  0.0,  0.0,
+         1.0, -1.0,  1.0,  0.0,
     ]
     var vertexBuffer: MTLBuffer! = nil
     var texture: MTLTexture? = nil
