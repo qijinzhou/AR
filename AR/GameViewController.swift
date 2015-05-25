@@ -10,7 +10,7 @@ import UIKit
 import Metal
 import QuartzCore
 
-class GameViewController: UIViewController, MetalTextureReceiver
+class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferReceiver
 {
     let device = { MTLCreateSystemDefaultDevice() }()
     let metalLayer = { CAMetalLayer() }()
@@ -35,6 +35,10 @@ class GameViewController: UIViewController, MetalTextureReceiver
     var videoCameraController: VideoCameraController! = nil
 
     var videoFrameController: MetalVideoFrameController! = nil
+
+    var videoFrameController2: ImageBufferFrameController! = nil
+
+    var markerDetector: MarkerDetector! = nil
 
     override func viewDidLoad()
     {
@@ -78,7 +82,11 @@ class GameViewController: UIViewController, MetalTextureReceiver
 
         videoFrameController = MetalVideoFrameController(device: device, delegate:self)
 
-        videoCameraController = VideoCameraController(delegate: videoFrameController)
+        videoFrameController2 = ImageBufferFrameController(delegate:self)
+
+        videoCameraController = VideoCameraController(delegate: videoFrameController2)
+
+        markerDetector = MarkerDetector()
 
 //        let previewLayer = videoCameraController.createPreviewLayer()
 //        previewLayer.frame = view.bounds
@@ -181,5 +189,10 @@ class GameViewController: UIViewController, MetalTextureReceiver
     func onTexture(texture: MTLTexture!)
     {
         self.texture = texture
+    }
+
+    func onImageBuffer(buffer: CVImageBufferRef)
+    {
+        var result = markerDetector.processImageBuffer(buffer)
     }
 }
