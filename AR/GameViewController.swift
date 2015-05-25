@@ -84,6 +84,7 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
         videoFrameController2 = ImageBufferFrameController(delegate:self)
 
+        //videoCameraController = VideoCameraController(delegate: videoFrameController)
         videoCameraController = VideoCameraController(delegate: videoFrameController2)
 
         markerDetector = MarkerDetector()
