@@ -10,7 +10,7 @@ import AVFoundation
 
 protocol ImageBufferReceiver
 {
-    func onImageBuffer(buffer: CVImageBufferRef)
+    func onImageBuffer(buffer: CVImageBuffer!)
 }
 
 class ImageBufferFrameController: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate

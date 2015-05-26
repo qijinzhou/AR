@@ -6,14 +6,17 @@
 //  Copyright (c) 2015 Q. All rights reserved.
 //
 
-import UIKit
+import AVFoundation
 import Metal
 import QuartzCore
+import UIKit
 
 class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferReceiver
 {
     let device = { MTLCreateSystemDefaultDevice() }()
     let metalLayer = { CAMetalLayer() }()
+
+    var textureCache: CVMetalTextureCacheRef!
 
     var commandQueue: MTLCommandQueue! = nil
     var timer: CADisplayLink! = nil
@@ -78,7 +81,7 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
         vertexBuffer.label = "vertices"
 
         timer = CADisplayLink(target: self, selector: Selector("renderLoop"))
-        timer.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+//        timer.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
 
         videoFrameController = MetalVideoFrameController(device: device, delegate:self)
 
@@ -88,6 +91,10 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
         videoCameraController = VideoCameraController(delegate: videoFrameController2)
 
         markerDetector = MarkerDetector()
+
+        var unamagedCache: Unmanaged<CVMetalTextureCache>?
+        CVMetalTextureCacheCreate(nil, nil, device, nil, &unamagedCache)
+        textureCache = unamagedCache!.takeRetainedValue()
 
 //        let previewLayer = videoCameraController.createPreviewLayer()
 //        previewLayer.frame = view.bounds
@@ -192,8 +199,25 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
         self.texture = texture
     }
 
-    func onImageBuffer(buffer: CVImageBufferRef)
+    func onImageBuffer(buffer: CVImageBuffer!)
     {
-        var result = markerDetector.processImageBuffer(buffer)
+        var edgeBuffer = markerDetector.detectEdges(buffer)
+
+        var width = CVPixelBufferGetWidth(buffer)
+        var height = CVPixelBufferGetHeight(buffer)
+
+        var unmanagedTexture: Unmanaged<CVMetalTexture>?
+
+        var status = CVMetalTextureCacheCreateTextureFromImage(nil, textureCache, buffer, nil, MTLPixelFormat.BGRA8Unorm, width, height, 0, &unmanagedTexture)
+
+        if (status != kCVReturnSuccess.value)
+        {
+            return
+        }
+
+        var texture = CVMetalTextureGetTexture(unmanagedTexture!.takeRetainedValue())
+        self.texture = texture
+
+        renderLoop()
     }
 }

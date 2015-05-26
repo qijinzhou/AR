@@ -34,8 +34,8 @@ class MetalVideoFrameController: NSObject, AVCaptureVideoDataOutputSampleBufferD
     {
         var buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
 
-        var width = CVPixelBufferGetWidth(buffer);
-        var height = CVPixelBufferGetHeight(buffer);
+        var width = CVPixelBufferGetWidth(buffer)
+        var height = CVPixelBufferGetHeight(buffer)
 
         var unmanagedTexture: Unmanaged<CVMetalTexture>?
 
