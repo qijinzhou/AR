@@ -20,21 +20,7 @@
 
 @implementation FrameFeatureDetector: NSObject
 
--(id) init
-{
-    self = [super init];
-
-    return self;
-}
-
-
--(int) processImageBuffer: (CVImageBufferRef) buffer
-{
-    return (int)CVPixelBufferGetWidth(buffer);
-}
-
-
--(CVImageBufferRef) detectEdges: (CVImageBufferRef) buffer
+-(CVImageBufferRef) detect: (CVImageBufferRef) buffer
 {
     CVPixelBufferLockBaseAddress(buffer, 0);
 

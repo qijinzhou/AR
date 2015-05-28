@@ -201,7 +201,7 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
     func onImageBuffer(buffer: CVImageBuffer!)
     {
-        var edgeBuffer = frameFeatureDetector.detectEdges(buffer)
+        var edgeBuffer = frameFeatureDetector.detect(buffer)
 
         var width = CVPixelBufferGetWidth(buffer)
         var height = CVPixelBufferGetHeight(buffer)

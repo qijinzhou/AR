@@ -12,8 +12,6 @@
 
 @interface FrameFeatureDetector: NSObject
 
--(id) init;
--(int) processImageBuffer: (CVImageBufferRef) buffer;
--(CVImageBufferRef) detectEdges: (CVImageBufferRef) buffer;
+-(CVImageBufferRef) detect: (CVImageBufferRef) buffer;
 
 @end
