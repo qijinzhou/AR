@@ -1,5 +1,5 @@
 //
-//  MarkerDetector.mm
+//  FrameFeatureDetector.mm
 //  AR
 //
 //  Created by Qijin Zhou on 5/21/15.
@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MarkerDetector.h"
+#import "FrameFeatureDetector.h"
 
 #import <opencv2/opencv.hpp>
 
-@interface MarkerDetector()
+@interface FrameFeatureDetector()
 {
 }
 @end
 
 
-@implementation MarkerDetector: NSObject
+@implementation FrameFeatureDetector: NSObject
 
 -(id) init
 {

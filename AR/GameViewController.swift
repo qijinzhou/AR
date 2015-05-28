@@ -41,7 +41,7 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
     var videoFrameController2: ImageBufferFrameController! = nil
 
-    var markerDetector: MarkerDetector! = nil
+    var frameFeatureDetector: FrameFeatureDetector! = nil
 
     override func viewDidLoad()
     {
@@ -90,7 +90,7 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
         //videoCameraController = VideoCameraController(delegate: videoFrameController)
         videoCameraController = VideoCameraController(delegate: videoFrameController2)
 
-        markerDetector = MarkerDetector()
+        frameFeatureDetector = FrameFeatureDetector()
 
         var unamagedCache: Unmanaged<CVMetalTextureCache>?
         CVMetalTextureCacheCreate(nil, nil, device, nil, &unamagedCache)
@@ -201,7 +201,7 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
     func onImageBuffer(buffer: CVImageBuffer!)
     {
-        var edgeBuffer = markerDetector.detectEdges(buffer)
+        var edgeBuffer = frameFeatureDetector.detectEdges(buffer)
 
         var width = CVPixelBufferGetWidth(buffer)
         var height = CVPixelBufferGetHeight(buffer)

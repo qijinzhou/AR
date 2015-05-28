@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E105734F1B13E4F800DF31DE /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E105734E1B13E4F800DF31DE /* opencv2.framework */; };
-		E10BAA881B0EE459007678A2 /* MarkerDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = E10BAA871B0EE459007678A2 /* MarkerDetector.mm */; };
+		E10BAA881B0EE459007678A2 /* FrameFeatureDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = E10BAA871B0EE459007678A2 /* FrameFeatureDetector.mm */; };
 		E10BAA8B1B0EEB3C007678A2 /* ImageBufferFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BAA8A1B0EEB3C007678A2 /* ImageBufferFrameController.swift */; };
 		E13AB7C21AF57F9300DB3E87 /* MetalVideoFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */; };
 		E1E0A1261AF1E19C00F6E213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A1251AF1E19C00F6E213 /* AppDelegate.swift */; };
@@ -34,8 +34,8 @@
 /* Begin PBXFileReference section */
 		E105734E1B13E4F800DF31DE /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = Frameworks/opencv2.framework; sourceTree = "<group>"; };
 		E10BAA861B0EE459007678A2 /* AR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AR-Bridging-Header.h"; sourceTree = "<group>"; };
-		E10BAA871B0EE459007678A2 /* MarkerDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkerDetector.mm; sourceTree = "<group>"; };
-		E10BAA891B0EE5B4007678A2 /* MarkerDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkerDetector.h; sourceTree = "<group>"; };
+		E10BAA871B0EE459007678A2 /* FrameFeatureDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FrameFeatureDetector.mm; sourceTree = "<group>"; };
+		E10BAA891B0EE5B4007678A2 /* FrameFeatureDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameFeatureDetector.h; sourceTree = "<group>"; };
 		E10BAA8A1B0EEB3C007678A2 /* ImageBufferFrameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBufferFrameController.swift; sourceTree = "<group>"; };
 		E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalVideoFrameController.swift; sourceTree = "<group>"; };
 		E1E0A1201AF1E19C00F6E213 /* AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,8 +103,8 @@
 				E1E0A17B1AF3591B00F6E213 /* VideoCameraController.swift */,
 				E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */,
 				E10BAA8A1B0EEB3C007678A2 /* ImageBufferFrameController.swift */,
-				E10BAA871B0EE459007678A2 /* MarkerDetector.mm */,
-				E10BAA891B0EE5B4007678A2 /* MarkerDetector.h */,
+				E10BAA871B0EE459007678A2 /* FrameFeatureDetector.mm */,
+				E10BAA891B0EE5B4007678A2 /* FrameFeatureDetector.h */,
 				E10BAA861B0EE459007678A2 /* AR-Bridging-Header.h */,
 			);
 			path = AR;
@@ -241,7 +241,7 @@
 				E13AB7C21AF57F9300DB3E87 /* MetalVideoFrameController.swift in Sources */,
 				E1E0A17C1AF3591B00F6E213 /* VideoCameraController.swift in Sources */,
 				E1E0A1481AF341C700F6E213 /* BasicShaders.metal in Sources */,
-				E10BAA881B0EE459007678A2 /* MarkerDetector.mm in Sources */,
+				E10BAA881B0EE459007678A2 /* FrameFeatureDetector.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

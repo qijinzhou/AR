@@ -1,5 +1,5 @@
 //
-//  MarkerDetector.h
+//  FrameFeatureDetector.h
 //  AR
 //
 //  Created by Qijin Zhou on 5/21/15.
@@ -10,7 +10,7 @@
 
 #import <CoreVideo/CoreVideo.h>
 
-@interface MarkerDetector: NSObject
+@interface FrameFeatureDetector: NSObject
 
 -(id) init;
 -(int) processImageBuffer: (CVImageBufferRef) buffer;

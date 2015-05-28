@@ -6,4 +6,4 @@
 //  Copyright (c) 2015 Q. All rights reserved.
 //
 
-#import "MarkerDetector.h"
+#import "FrameFeatureDetector.h"
