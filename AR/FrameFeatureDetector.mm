@@ -6,14 +6,17 @@
 //  Copyright (c) 2015 Q. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "FrameFeatureDetector.h"
+
+#import <Foundation/Foundation.h>
 
 #import <opencv2/opencv.hpp>
 
+#import "EdgeDetector.h"
+
 @interface FrameFeatureDetector()
 {
+    EdgeDetector edgeDetector;
 }
 @end
 
@@ -30,13 +33,7 @@
 
     cv::Mat frame(height, width, CV_8UC4, (void*)baseAddress);
 
-    cv::Mat grayFrame;
-    cv::cvtColor(frame, grayFrame, cv::COLOR_BGRA2GRAY);
-    cv::blur(grayFrame, grayFrame, cv::Size(3,3));
-    cv::Canny(grayFrame, grayFrame, 20, 60, 3);
-
-    frame = cv::Scalar::all(0);
-    frame.setTo(cv::Scalar::all(255), grayFrame);
+    edgeDetector.Detect(frame);
 
     CVPixelBufferUnlockBaseAddress(buffer, 0);
 
