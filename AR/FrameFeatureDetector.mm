@@ -12,6 +12,7 @@
 
 #import <opencv2/opencv.hpp>
 
+#import "CVPixelBufferLock.h"
 #import "EdgeDetector.h"
 
 @interface FrameFeatureDetector()
@@ -25,17 +26,11 @@
 
 -(CVImageBufferRef) detect: (CVImageBufferRef) buffer
 {
-    CVPixelBufferLockBaseAddress(buffer, 0);
+    CVPixelBufferLock bufferLock(buffer);
 
-    uint8_t* baseAddress = (uint8_t*)CVPixelBufferGetBaseAddress(buffer);
-    int width = static_cast<int>(CVPixelBufferGetWidth(buffer));
-    int height = static_cast<int>(CVPixelBufferGetHeight(buffer));
-
-    cv::Mat frame(height, width, CV_8UC4, (void*)baseAddress);
+    cv::Mat frame(static_cast<int>(bufferLock.GetHeight()), static_cast<int>(bufferLock.GetWidth()), CV_8UC4, bufferLock.GetAddress());
 
     edgeDetector.Detect(frame);
-
-    CVPixelBufferUnlockBaseAddress(buffer, 0);
 
     return nil;
 }

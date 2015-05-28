@@ -41,6 +41,7 @@
 		E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalVideoFrameController.swift; sourceTree = "<group>"; };
 		E1A97A2F1B16E0BA00660184 /* EdgeDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EdgeDetector.h; sourceTree = "<group>"; };
 		E1A97A301B16E0CF00660184 /* EdgeDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdgeDetector.cpp; sourceTree = "<group>"; };
+		E1A97A321B16E2F800660184 /* CVPixelBufferLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVPixelBufferLock.h; sourceTree = "<group>"; };
 		E1E0A1201AF1E19C00F6E213 /* AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E0A1241AF1E19C00F6E213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E0A1251AF1E19C00F6E213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 				E10BAA891B0EE5B4007678A2 /* FrameFeatureDetector.h */,
 				E10BAA861B0EE459007678A2 /* AR-Bridging-Header.h */,
 				E1A97A301B16E0CF00660184 /* EdgeDetector.cpp */,
+				E1A97A321B16E2F800660184 /* CVPixelBufferLock.h */,
 			);
 			path = AR;
 			sourceTree = "<group>";
