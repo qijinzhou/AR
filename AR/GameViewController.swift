@@ -16,6 +16,8 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
     let device = { MTLCreateSystemDefaultDevice() }()
     let metalLayer = { CAMetalLayer() }()
 
+    let textLayer = { CATextLayer() }()
+
     var textureCache: CVMetalTextureCacheRef!
 
     var commandQueue: MTLCommandQueue! = nil
@@ -99,6 +101,12 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 //        let previewLayer = videoCameraController.createPreviewLayer()
 //        previewLayer.frame = view.bounds
 //        view.layer.addSublayer(previewLayer)
+
+        textLayer.foregroundColor = UIColor.whiteColor().CGColor
+        textLayer.frame = view.frame
+        textLayer.string = "fps"
+
+        view.layer.addSublayer(textLayer)
 
         videoCameraController.start()
     }
