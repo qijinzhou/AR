@@ -55,7 +55,7 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
         self.resize()
 
-        view.layer.addSublayer(metalLayer)
+        view.layer.insertSublayer(metalLayer, atIndex: 0)
         view.opaque = true
         view.backgroundColor = nil
 
@@ -106,7 +106,7 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
         textLayer.frame = view.frame
         textLayer.string = "fps"
 
-        view.layer.addSublayer(textLayer)
+        view.layer.insertSublayer(textLayer, atIndex: 1)
 
         videoCameraController.start()
     }
