@@ -13,6 +13,8 @@
 		E13AB7C21AF57F9300DB3E87 /* MetalVideoFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */; };
 		E1A97A311B16E0CF00660184 /* EdgeDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1A97A301B16E0CF00660184 /* EdgeDetector.cpp */; };
 		E1A97A341B19909800660184 /* TextureFilterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A97A331B19909800660184 /* TextureFilterProtocols.swift */; };
+		E1A97A361B1ECDBF00660184 /* GrayScaleTextureFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A97A351B1ECDBF00660184 /* GrayScaleTextureFilter.swift */; };
+		E1A97A381B1ECDD000660184 /* FilterShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E1A97A371B1ECDD000660184 /* FilterShaders.metal */; };
 		E1E0A1261AF1E19C00F6E213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A1251AF1E19C00F6E213 /* AppDelegate.swift */; };
 		E1E0A1281AF1E19C00F6E213 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A1271AF1E19C00F6E213 /* GameViewController.swift */; };
 		E1E0A12D1AF1E19C00F6E213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1E0A12B1AF1E19C00F6E213 /* Main.storyboard */; };
@@ -44,6 +46,8 @@
 		E1A97A301B16E0CF00660184 /* EdgeDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdgeDetector.cpp; sourceTree = "<group>"; };
 		E1A97A321B16E2F800660184 /* CVPixelBufferLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVPixelBufferLock.h; sourceTree = "<group>"; };
 		E1A97A331B19909800660184 /* TextureFilterProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureFilterProtocols.swift; sourceTree = "<group>"; };
+		E1A97A351B1ECDBF00660184 /* GrayScaleTextureFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScaleTextureFilter.swift; sourceTree = "<group>"; };
+		E1A97A371B1ECDD000660184 /* FilterShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = FilterShaders.metal; sourceTree = "<group>"; };
 		E1E0A1201AF1E19C00F6E213 /* AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E0A1241AF1E19C00F6E213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E0A1251AF1E19C00F6E213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 				E1A97A301B16E0CF00660184 /* EdgeDetector.cpp */,
 				E1A97A321B16E2F800660184 /* CVPixelBufferLock.h */,
 				E1A97A331B19909800660184 /* TextureFilterProtocols.swift */,
+				E1A97A351B1ECDBF00660184 /* GrayScaleTextureFilter.swift */,
+				E1A97A371B1ECDD000660184 /* FilterShaders.metal */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -248,7 +254,9 @@
 				E1A97A311B16E0CF00660184 /* EdgeDetector.cpp in Sources */,
 				E1A97A341B19909800660184 /* TextureFilterProtocols.swift in Sources */,
 				E1E0A1281AF1E19C00F6E213 /* GameViewController.swift in Sources */,
+				E1A97A361B1ECDBF00660184 /* GrayScaleTextureFilter.swift in Sources */,
 				E10BAA8B1B0EEB3C007678A2 /* ImageBufferFrameController.swift in Sources */,
+				E1A97A381B1ECDD000660184 /* FilterShaders.metal in Sources */,
 				E1E0A1261AF1E19C00F6E213 /* AppDelegate.swift in Sources */,
 				E13AB7C21AF57F9300DB3E87 /* MetalVideoFrameController.swift in Sources */,
 				E1E0A17C1AF3591B00F6E213 /* VideoCameraController.swift in Sources */,

@@ -45,6 +45,8 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
     var frameFeatureDetector: FrameFeatureDetector! = nil
 
+    var textureFilter: GrayscaleTextureFilter! = nil
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -60,7 +62,7 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
         view.backgroundColor = nil
 
         commandQueue = device.newCommandQueue()
-        commandQueue.label = "command queue"
+        commandQueue.label = "render command queue"
 
         let defaultLibrary = device.newDefaultLibrary()
         let vertexProgram = defaultLibrary?.newFunctionWithName("basicVertexShader")
@@ -89,8 +91,8 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
         videoFrameController2 = ImageBufferFrameController(delegate:self)
 
-        //videoCameraController = VideoCameraController(delegate: videoFrameController)
-        videoCameraController = VideoCameraController(delegate: videoFrameController2)
+        videoCameraController = VideoCameraController(delegate: videoFrameController)
+        //videoCameraController = VideoCameraController(delegate: videoFrameController2)
 
         frameFeatureDetector = FrameFeatureDetector()
 
@@ -105,6 +107,8 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
         textLayer.foregroundColor = UIColor.whiteColor().CGColor
         textLayer.frame = view.frame
         textLayer.string = "fps"
+
+        textureFilter = GrayscaleTextureFilter()
 
         view.layer.insertSublayer(textLayer, atIndex: 1)
 
@@ -204,7 +208,8 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
     func onTexture(texture: MTLTexture!)
     {
-        self.texture = texture
+        self.texture = textureFilter.filter(texture)
+        renderLoop()
     }
 
     func onImageBuffer(buffer: CVImageBuffer!)
