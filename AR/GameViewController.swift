@@ -45,7 +45,8 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
     var frameFeatureDetector: FrameFeatureDetector! = nil
 
-    var textureFilter: GrayscaleTextureFilter! = nil
+    var grayscaleTextureFilter: GrayscaleTextureFilter! = nil
+    var boxBlurTextureFilter: BoxBlurTextureFilter! = nil
 
     override func viewDidLoad()
     {
@@ -108,7 +109,8 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
         textLayer.frame = view.frame
         textLayer.string = "fps"
 
-        textureFilter = GrayscaleTextureFilter()
+        grayscaleTextureFilter = GrayscaleTextureFilter()
+        boxBlurTextureFilter = BoxBlurTextureFilter()
 
         view.layer.insertSublayer(textLayer, atIndex: 1)
 
@@ -208,7 +210,9 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
     func onTexture(texture: MTLTexture!)
     {
-        self.texture = textureFilter.filter(texture)
+        //self.texture = texture
+        //self.texture = grayscaleTextureFilter.filter(texture)
+        self.texture = boxBlurTextureFilter.filter(texture)
         renderLoop()
     }
 
