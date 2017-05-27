@@ -7,73 +7,82 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E105734F1B13E4F800DF31DE /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E105734E1B13E4F800DF31DE /* opencv2.framework */; };
-		E10BAA881B0EE459007678A2 /* FrameFeatureDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = E10BAA871B0EE459007678A2 /* FrameFeatureDetector.mm */; };
-		E10BAA8B1B0EEB3C007678A2 /* ImageBufferFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10BAA8A1B0EEB3C007678A2 /* ImageBufferFrameController.swift */; };
-		E13AB7C21AF57F9300DB3E87 /* MetalVideoFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */; };
-		E1A97A311B16E0CF00660184 /* EdgeDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1A97A301B16E0CF00660184 /* EdgeDetector.cpp */; };
-		E1A97A341B19909800660184 /* TextureFilterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A97A331B19909800660184 /* TextureFilterProtocols.swift */; };
-		E1A97A361B1ECDBF00660184 /* GrayScaleTextureFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A97A351B1ECDBF00660184 /* GrayScaleTextureFilter.swift */; };
-		E1A97A381B1ECDD000660184 /* FilterShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E1A97A371B1ECDD000660184 /* FilterShaders.metal */; };
-		E1A97A3A1B20358B00660184 /* BoxBlurTextureFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A97A391B20358B00660184 /* BoxBlurTextureFilter.swift */; };
-		E1E0A1261AF1E19C00F6E213 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A1251AF1E19C00F6E213 /* AppDelegate.swift */; };
-		E1E0A1281AF1E19C00F6E213 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A1271AF1E19C00F6E213 /* GameViewController.swift */; };
-		E1E0A12D1AF1E19C00F6E213 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1E0A12B1AF1E19C00F6E213 /* Main.storyboard */; };
-		E1E0A12F1AF1E19C00F6E213 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1E0A12E1AF1E19C00F6E213 /* Images.xcassets */; };
-		E1E0A1321AF1E19C00F6E213 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E0A1301AF1E19C00F6E213 /* LaunchScreen.xib */; };
-		E1E0A13E1AF1E19C00F6E213 /* ARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A13D1AF1E19C00F6E213 /* ARTests.swift */; };
-		E1E0A1481AF341C700F6E213 /* BasicShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A1471AF341C700F6E213 /* BasicShaders.metal */; };
-		E1E0A17C1AF3591B00F6E213 /* VideoCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E0A17B1AF3591B00F6E213 /* VideoCameraController.swift */; };
+		E1805BF11ED933750049767C /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1805BF01ED933750049767C /* Metal.framework */; };
+		E1805BF31ED933750049767C /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1805BF21ED933750049767C /* MetalKit.framework */; };
+		E1805BF51ED933750049767C /* ModelIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1805BF41ED933750049767C /* ModelIO.framework */; };
+		E1805BF81ED933750049767C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1805BF71ED933750049767C /* AppDelegate.swift */; };
+		E1805BFA1ED933750049767C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1805BF91ED933750049767C /* GameViewController.swift */; };
+		E1805BFF1ED933750049767C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1805BFD1ED933750049767C /* Main.storyboard */; };
+		E1805C011ED933750049767C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1805C001ED933750049767C /* Assets.xcassets */; };
+		E1805C041ED933750049767C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1805C021ED933750049767C /* LaunchScreen.storyboard */; };
+		E1805C0F1ED933750049767C /* ARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1805C0E1ED933750049767C /* ARTests.swift */; };
+		E1805C1C1ED935D90049767C /* FrameFeatureDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = E1805C1B1ED935D90049767C /* FrameFeatureDetector.mm */; };
+		E1805C201ED937D60049767C /* EdgeDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1805C1E1ED937D60049767C /* EdgeDetector.cpp */; };
+		E1805C291ED938B60049767C /* VideoCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1805C211ED938B60049767C /* VideoCameraController.swift */; };
+		E1805C2A1ED938B60049767C /* MetalVideoFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1805C221ED938B60049767C /* MetalVideoFrameController.swift */; };
+		E1805C2B1ED938B60049767C /* ImageBufferFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1805C231ED938B60049767C /* ImageBufferFrameController.swift */; };
+		E1805C2C1ED938B60049767C /* GrayScaleTextureFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1805C241ED938B60049767C /* GrayScaleTextureFilter.swift */; };
+		E1805C2D1ED938B60049767C /* FilterShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E1805C251ED938B60049767C /* FilterShaders.metal */; };
+		E1805C2E1ED938B60049767C /* BoxBlurTextureFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1805C261ED938B60049767C /* BoxBlurTextureFilter.swift */; };
+		E1805C2F1ED938B60049767C /* BasicShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E1805C271ED938B60049767C /* BasicShaders.metal */; };
+		E1805C301ED938B60049767C /* TextureFilterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1805C281ED938B60049767C /* TextureFilterProtocols.swift */; };
+		E1805C321ED94C8D0049767C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1805C311ED94C8D0049767C /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E1E0A1381AF1E19C00F6E213 /* PBXContainerItemProxy */ = {
+		E1805C0B1ED933750049767C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E1E0A1181AF1E19C00F6E213 /* Project object */;
+			containerPortal = E1805BE51ED933750049767C /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E1E0A11F1AF1E19C00F6E213;
+			remoteGlobalIDString = E1805BEC1ED933750049767C;
 			remoteInfo = AR;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E105734E1B13E4F800DF31DE /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = Frameworks/opencv2.framework; sourceTree = "<group>"; };
-		E10BAA861B0EE459007678A2 /* AR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AR-Bridging-Header.h"; sourceTree = "<group>"; };
-		E10BAA871B0EE459007678A2 /* FrameFeatureDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FrameFeatureDetector.mm; sourceTree = "<group>"; };
-		E10BAA891B0EE5B4007678A2 /* FrameFeatureDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameFeatureDetector.h; sourceTree = "<group>"; };
-		E10BAA8A1B0EEB3C007678A2 /* ImageBufferFrameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBufferFrameController.swift; sourceTree = "<group>"; };
-		E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalVideoFrameController.swift; sourceTree = "<group>"; };
-		E1A97A2F1B16E0BA00660184 /* EdgeDetector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EdgeDetector.h; sourceTree = "<group>"; };
-		E1A97A301B16E0CF00660184 /* EdgeDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdgeDetector.cpp; sourceTree = "<group>"; };
-		E1A97A321B16E2F800660184 /* CVPixelBufferLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CVPixelBufferLock.h; sourceTree = "<group>"; };
-		E1A97A331B19909800660184 /* TextureFilterProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureFilterProtocols.swift; sourceTree = "<group>"; };
-		E1A97A351B1ECDBF00660184 /* GrayScaleTextureFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScaleTextureFilter.swift; sourceTree = "<group>"; };
-		E1A97A371B1ECDD000660184 /* FilterShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = FilterShaders.metal; sourceTree = "<group>"; };
-		E1A97A391B20358B00660184 /* BoxBlurTextureFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxBlurTextureFilter.swift; sourceTree = "<group>"; };
-		E1E0A1201AF1E19C00F6E213 /* AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AR.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1E0A1241AF1E19C00F6E213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1E0A1251AF1E19C00F6E213 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E1E0A1271AF1E19C00F6E213 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		E1E0A12C1AF1E19C00F6E213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E1E0A12E1AF1E19C00F6E213 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E1E0A1311AF1E19C00F6E213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E1E0A1371AF1E19C00F6E213 /* ARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1E0A13C1AF1E19C00F6E213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1E0A13D1AF1E19C00F6E213 /* ARTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTests.swift; sourceTree = "<group>"; };
-		E1E0A1471AF341C700F6E213 /* BasicShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = BasicShaders.metal; sourceTree = "<group>"; };
-		E1E0A17B1AF3591B00F6E213 /* VideoCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCameraController.swift; sourceTree = "<group>"; };
+		E1805BED1ED933750049767C /* AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1805BF01ED933750049767C /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		E1805BF21ED933750049767C /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		E1805BF41ED933750049767C /* ModelIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ModelIO.framework; path = System/Library/Frameworks/ModelIO.framework; sourceTree = SDKROOT; };
+		E1805BF71ED933750049767C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E1805BF91ED933750049767C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		E1805BFE1ED933750049767C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E1805C001ED933750049767C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E1805C031ED933750049767C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E1805C051ED933750049767C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1805C0A1ED933750049767C /* ARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1805C0E1ED933750049767C /* ARTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTests.swift; sourceTree = "<group>"; };
+		E1805C101ED933750049767C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1805C191ED935D90049767C /* AR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AR-Bridging-Header.h"; sourceTree = "<group>"; };
+		E1805C1A1ED935D90049767C /* FrameFeatureDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameFeatureDetector.h; sourceTree = "<group>"; };
+		E1805C1B1ED935D90049767C /* FrameFeatureDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FrameFeatureDetector.mm; sourceTree = "<group>"; };
+		E1805C1D1ED937D60049767C /* EdgeDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeDetector.h; sourceTree = "<group>"; };
+		E1805C1E1ED937D60049767C /* EdgeDetector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EdgeDetector.cpp; sourceTree = "<group>"; };
+		E1805C1F1ED937D60049767C /* CVPixelBufferLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVPixelBufferLock.h; sourceTree = "<group>"; };
+		E1805C211ED938B60049767C /* VideoCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCameraController.swift; sourceTree = "<group>"; };
+		E1805C221ED938B60049767C /* MetalVideoFrameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalVideoFrameController.swift; sourceTree = "<group>"; };
+		E1805C231ED938B60049767C /* ImageBufferFrameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBufferFrameController.swift; sourceTree = "<group>"; };
+		E1805C241ED938B60049767C /* GrayScaleTextureFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayScaleTextureFilter.swift; sourceTree = "<group>"; };
+		E1805C251ED938B60049767C /* FilterShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = FilterShaders.metal; sourceTree = "<group>"; };
+		E1805C261ED938B60049767C /* BoxBlurTextureFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxBlurTextureFilter.swift; sourceTree = "<group>"; };
+		E1805C271ED938B60049767C /* BasicShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = BasicShaders.metal; sourceTree = "<group>"; };
+		E1805C281ED938B60049767C /* TextureFilterProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureFilterProtocols.swift; sourceTree = "<group>"; };
+		E1805C311ED94C8D0049767C /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = Frameworks/opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E1E0A11D1AF1E19C00F6E213 /* Frameworks */ = {
+		E1805BEA1ED933750049767C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E105734F1B13E4F800DF31DE /* opencv2.framework in Frameworks */,
+				E1805BF51ED933750049767C /* ModelIO.framework in Frameworks */,
+				E1805BF11ED933750049767C /* Metal.framework in Frameworks */,
+				E1805C321ED94C8D0049767C /* opencv2.framework in Frameworks */,
+				E1805BF31ED933750049767C /* MetalKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1E0A1341AF1E19C00F6E213 /* Frameworks */ = {
+		E1805C071ED933750049767C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -83,87 +92,82 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E1E0A1171AF1E19C00F6E213 = {
+		E1805BE41ED933750049767C = {
 			isa = PBXGroup;
 			children = (
-				E105734E1B13E4F800DF31DE /* opencv2.framework */,
-				E1E0A1221AF1E19C00F6E213 /* AR */,
-				E1E0A13A1AF1E19C00F6E213 /* ARTests */,
-				E1E0A1211AF1E19C00F6E213 /* Products */,
+				E1805BF61ED933750049767C /* AR */,
+				E1805C0D1ED933750049767C /* ARTests */,
+				E1805BEF1ED933750049767C /* Frameworks */,
+				E1805BEE1ED933750049767C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E1E0A1211AF1E19C00F6E213 /* Products */ = {
+		E1805BEE1ED933750049767C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E1E0A1201AF1E19C00F6E213 /* AR.app */,
-				E1E0A1371AF1E19C00F6E213 /* ARTests.xctest */,
+				E1805BED1ED933750049767C /* AR.app */,
+				E1805C0A1ED933750049767C /* ARTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E1E0A1221AF1E19C00F6E213 /* AR */ = {
+		E1805BEF1ED933750049767C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E1E0A1251AF1E19C00F6E213 /* AppDelegate.swift */,
-				E1E0A1271AF1E19C00F6E213 /* GameViewController.swift */,
-				E1A97A2F1B16E0BA00660184 /* EdgeDetector.h */,
-				E1E0A12B1AF1E19C00F6E213 /* Main.storyboard */,
-				E1E0A12E1AF1E19C00F6E213 /* Images.xcassets */,
-				E1E0A1301AF1E19C00F6E213 /* LaunchScreen.xib */,
-				E1E0A1231AF1E19C00F6E213 /* Supporting Files */,
-				E1E0A1471AF341C700F6E213 /* BasicShaders.metal */,
-				E1E0A17B1AF3591B00F6E213 /* VideoCameraController.swift */,
-				E13AB7C11AF57F9300DB3E87 /* MetalVideoFrameController.swift */,
-				E10BAA8A1B0EEB3C007678A2 /* ImageBufferFrameController.swift */,
-				E10BAA871B0EE459007678A2 /* FrameFeatureDetector.mm */,
-				E10BAA891B0EE5B4007678A2 /* FrameFeatureDetector.h */,
-				E10BAA861B0EE459007678A2 /* AR-Bridging-Header.h */,
-				E1A97A301B16E0CF00660184 /* EdgeDetector.cpp */,
-				E1A97A321B16E2F800660184 /* CVPixelBufferLock.h */,
-				E1A97A331B19909800660184 /* TextureFilterProtocols.swift */,
-				E1A97A351B1ECDBF00660184 /* GrayScaleTextureFilter.swift */,
-				E1A97A391B20358B00660184 /* BoxBlurTextureFilter.swift */,
-				E1A97A371B1ECDD000660184 /* FilterShaders.metal */,
+				E1805C311ED94C8D0049767C /* opencv2.framework */,
+				E1805BF01ED933750049767C /* Metal.framework */,
+				E1805BF21ED933750049767C /* MetalKit.framework */,
+				E1805BF41ED933750049767C /* ModelIO.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1805BF61ED933750049767C /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				E1805BF71ED933750049767C /* AppDelegate.swift */,
+				E1805C191ED935D90049767C /* AR-Bridging-Header.h */,
+				E1805C001ED933750049767C /* Assets.xcassets */,
+				E1805C271ED938B60049767C /* BasicShaders.metal */,
+				E1805C261ED938B60049767C /* BoxBlurTextureFilter.swift */,
+				E1805C1F1ED937D60049767C /* CVPixelBufferLock.h */,
+				E1805C1E1ED937D60049767C /* EdgeDetector.cpp */,
+				E1805C1D1ED937D60049767C /* EdgeDetector.h */,
+				E1805C251ED938B60049767C /* FilterShaders.metal */,
+				E1805C1A1ED935D90049767C /* FrameFeatureDetector.h */,
+				E1805C1B1ED935D90049767C /* FrameFeatureDetector.mm */,
+				E1805BF91ED933750049767C /* GameViewController.swift */,
+				E1805C241ED938B60049767C /* GrayScaleTextureFilter.swift */,
+				E1805C231ED938B60049767C /* ImageBufferFrameController.swift */,
+				E1805C051ED933750049767C /* Info.plist */,
+				E1805C021ED933750049767C /* LaunchScreen.storyboard */,
+				E1805BFD1ED933750049767C /* Main.storyboard */,
+				E1805C221ED938B60049767C /* MetalVideoFrameController.swift */,
+				E1805C281ED938B60049767C /* TextureFilterProtocols.swift */,
+				E1805C211ED938B60049767C /* VideoCameraController.swift */,
 			);
 			path = AR;
 			sourceTree = "<group>";
 		};
-		E1E0A1231AF1E19C00F6E213 /* Supporting Files */ = {
+		E1805C0D1ED933750049767C /* ARTests */ = {
 			isa = PBXGroup;
 			children = (
-				E1E0A1241AF1E19C00F6E213 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E1E0A13A1AF1E19C00F6E213 /* ARTests */ = {
-			isa = PBXGroup;
-			children = (
-				E1E0A13D1AF1E19C00F6E213 /* ARTests.swift */,
-				E1E0A13B1AF1E19C00F6E213 /* Supporting Files */,
+				E1805C0E1ED933750049767C /* ARTests.swift */,
+				E1805C101ED933750049767C /* Info.plist */,
 			);
 			path = ARTests;
-			sourceTree = "<group>";
-		};
-		E1E0A13B1AF1E19C00F6E213 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E1E0A13C1AF1E19C00F6E213 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E1E0A11F1AF1E19C00F6E213 /* AR */ = {
+		E1805BEC1ED933750049767C /* AR */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E1E0A1411AF1E19C00F6E213 /* Build configuration list for PBXNativeTarget "AR" */;
+			buildConfigurationList = E1805C131ED933750049767C /* Build configuration list for PBXNativeTarget "AR" */;
 			buildPhases = (
-				E1E0A11C1AF1E19C00F6E213 /* Sources */,
-				E1E0A11D1AF1E19C00F6E213 /* Frameworks */,
-				E1E0A11E1AF1E19C00F6E213 /* Resources */,
+				E1805BE91ED933750049767C /* Sources */,
+				E1805BEA1ED933750049767C /* Frameworks */,
+				E1805BEB1ED933750049767C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -171,46 +175,52 @@
 			);
 			name = AR;
 			productName = AR;
-			productReference = E1E0A1201AF1E19C00F6E213 /* AR.app */;
+			productReference = E1805BED1ED933750049767C /* AR.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E1E0A1361AF1E19C00F6E213 /* ARTests */ = {
+		E1805C091ED933750049767C /* ARTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E1E0A1441AF1E19C00F6E213 /* Build configuration list for PBXNativeTarget "ARTests" */;
+			buildConfigurationList = E1805C161ED933750049767C /* Build configuration list for PBXNativeTarget "ARTests" */;
 			buildPhases = (
-				E1E0A1331AF1E19C00F6E213 /* Sources */,
-				E1E0A1341AF1E19C00F6E213 /* Frameworks */,
-				E1E0A1351AF1E19C00F6E213 /* Resources */,
+				E1805C061ED933750049767C /* Sources */,
+				E1805C071ED933750049767C /* Frameworks */,
+				E1805C081ED933750049767C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E1E0A1391AF1E19C00F6E213 /* PBXTargetDependency */,
+				E1805C0C1ED933750049767C /* PBXTargetDependency */,
 			);
 			name = ARTests;
 			productName = ARTests;
-			productReference = E1E0A1371AF1E19C00F6E213 /* ARTests.xctest */;
+			productReference = E1805C0A1ED933750049767C /* ARTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E1E0A1181AF1E19C00F6E213 /* Project object */ = {
+		E1805BE51ED933750049767C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Q;
 				TargetAttributes = {
-					E1E0A11F1AF1E19C00F6E213 = {
-						CreatedOnToolsVersion = 6.3.1;
+					E1805BEC1ED933750049767C = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = E2JDRU8VX5;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 					};
-					E1E0A1361AF1E19C00F6E213 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = E1E0A11F1AF1E19C00F6E213;
+					E1805C091ED933750049767C = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = E2JDRU8VX5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E1805BEC1ED933750049767C;
 					};
 				};
 			};
-			buildConfigurationList = E1E0A11B1AF1E19C00F6E213 /* Build configuration list for PBXProject "AR" */;
+			buildConfigurationList = E1805BE81ED933750049767C /* Build configuration list for PBXProject "AR" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -218,29 +228,29 @@
 				en,
 				Base,
 			);
-			mainGroup = E1E0A1171AF1E19C00F6E213;
-			productRefGroup = E1E0A1211AF1E19C00F6E213 /* Products */;
+			mainGroup = E1805BE41ED933750049767C;
+			productRefGroup = E1805BEE1ED933750049767C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E1E0A11F1AF1E19C00F6E213 /* AR */,
-				E1E0A1361AF1E19C00F6E213 /* ARTests */,
+				E1805BEC1ED933750049767C /* AR */,
+				E1805C091ED933750049767C /* ARTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E1E0A11E1AF1E19C00F6E213 /* Resources */ = {
+		E1805BEB1ED933750049767C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1E0A12D1AF1E19C00F6E213 /* Main.storyboard in Resources */,
-				E1E0A1321AF1E19C00F6E213 /* LaunchScreen.xib in Resources */,
-				E1E0A12F1AF1E19C00F6E213 /* Images.xcassets in Resources */,
+				E1805C041ED933750049767C /* LaunchScreen.storyboard in Resources */,
+				E1805C011ED933750049767C /* Assets.xcassets in Resources */,
+				E1805BFF1ED933750049767C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1E0A1351AF1E19C00F6E213 /* Resources */ = {
+		E1805C081ED933750049767C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -250,67 +260,69 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E1E0A11C1AF1E19C00F6E213 /* Sources */ = {
+		E1805BE91ED933750049767C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1A97A311B16E0CF00660184 /* EdgeDetector.cpp in Sources */,
-				E1A97A341B19909800660184 /* TextureFilterProtocols.swift in Sources */,
-				E1A97A3A1B20358B00660184 /* BoxBlurTextureFilter.swift in Sources */,
-				E1E0A1281AF1E19C00F6E213 /* GameViewController.swift in Sources */,
-				E1A97A361B1ECDBF00660184 /* GrayScaleTextureFilter.swift in Sources */,
-				E10BAA8B1B0EEB3C007678A2 /* ImageBufferFrameController.swift in Sources */,
-				E1A97A381B1ECDD000660184 /* FilterShaders.metal in Sources */,
-				E1E0A1261AF1E19C00F6E213 /* AppDelegate.swift in Sources */,
-				E13AB7C21AF57F9300DB3E87 /* MetalVideoFrameController.swift in Sources */,
-				E1E0A17C1AF3591B00F6E213 /* VideoCameraController.swift in Sources */,
-				E1E0A1481AF341C700F6E213 /* BasicShaders.metal in Sources */,
-				E10BAA881B0EE459007678A2 /* FrameFeatureDetector.mm in Sources */,
+				E1805C2E1ED938B60049767C /* BoxBlurTextureFilter.swift in Sources */,
+				E1805C201ED937D60049767C /* EdgeDetector.cpp in Sources */,
+				E1805BFA1ED933750049767C /* GameViewController.swift in Sources */,
+				E1805C2C1ED938B60049767C /* GrayScaleTextureFilter.swift in Sources */,
+				E1805C2D1ED938B60049767C /* FilterShaders.metal in Sources */,
+				E1805C1C1ED935D90049767C /* FrameFeatureDetector.mm in Sources */,
+				E1805C2A1ED938B60049767C /* MetalVideoFrameController.swift in Sources */,
+				E1805C301ED938B60049767C /* TextureFilterProtocols.swift in Sources */,
+				E1805C291ED938B60049767C /* VideoCameraController.swift in Sources */,
+				E1805C2B1ED938B60049767C /* ImageBufferFrameController.swift in Sources */,
+				E1805BF81ED933750049767C /* AppDelegate.swift in Sources */,
+				E1805C2F1ED938B60049767C /* BasicShaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1E0A1331AF1E19C00F6E213 /* Sources */ = {
+		E1805C061ED933750049767C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1E0A13E1AF1E19C00F6E213 /* ARTests.swift in Sources */,
+				E1805C0F1ED933750049767C /* ARTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E1E0A1391AF1E19C00F6E213 /* PBXTargetDependency */ = {
+		E1805C0C1ED933750049767C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E1E0A11F1AF1E19C00F6E213 /* AR */;
-			targetProxy = E1E0A1381AF1E19C00F6E213 /* PBXContainerItemProxy */;
+			target = E1805BEC1ED933750049767C /* AR */;
+			targetProxy = E1805C0B1ED933750049767C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E1E0A12B1AF1E19C00F6E213 /* Main.storyboard */ = {
+		E1805BFD1ED933750049767C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E1E0A12C1AF1E19C00F6E213 /* Base */,
+				E1805BFE1ED933750049767C /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		E1E0A1301AF1E19C00F6E213 /* LaunchScreen.xib */ = {
+		E1805C021ED933750049767C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E1E0A1311AF1E19C00F6E213 /* Base */,
+				E1805C031ED933750049767C /* Base */,
 			);
-			name = LaunchScreen.xib;
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E1E0A13F1AF1E19C00F6E213 /* Debug */ = {
+		E1805C111ED933750049767C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -318,16 +330,20 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -336,26 +352,28 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		E1E0A1401AF1E19C00F6E213 /* Release */ = {
+		E1805C121ED933750049767C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -363,10 +381,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -382,77 +403,80 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		E1E0A1421AF1E19C00F6E213 /* Debug */ = {
+		E1805C141ED933750049767C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = E2JDRU8VX5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = AR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Q.AR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AR/AR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		E1E0A1431AF1E19C00F6E213 /* Release */ = {
+		E1805C151ED933750049767C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = E2JDRU8VX5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = AR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Q.AR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AR/AR-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
-		E1E0A1451AF1E19C00F6E213 /* Debug */ = {
+		E1805C171ED933750049767C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				DEVELOPMENT_TEAM = E2JDRU8VX5;
 				INFOPLIST_FILE = ARTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Q.ARTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AR.app/AR";
 			};
 			name = Debug;
 		};
-		E1E0A1461AF1E19C00F6E213 /* Release */ = {
+		E1805C181ED933750049767C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				DEVELOPMENT_TEAM = E2JDRU8VX5;
 				INFOPLIST_FILE = ARTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Q.ARTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AR.app/AR";
 			};
 			name = Release;
@@ -460,34 +484,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E1E0A11B1AF1E19C00F6E213 /* Build configuration list for PBXProject "AR" */ = {
+		E1805BE81ED933750049767C /* Build configuration list for PBXProject "AR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E1E0A13F1AF1E19C00F6E213 /* Debug */,
-				E1E0A1401AF1E19C00F6E213 /* Release */,
+				E1805C111ED933750049767C /* Debug */,
+				E1805C121ED933750049767C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E1E0A1411AF1E19C00F6E213 /* Build configuration list for PBXNativeTarget "AR" */ = {
+		E1805C131ED933750049767C /* Build configuration list for PBXNativeTarget "AR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E1E0A1421AF1E19C00F6E213 /* Debug */,
-				E1E0A1431AF1E19C00F6E213 /* Release */,
+				E1805C141ED933750049767C /* Debug */,
+				E1805C151ED933750049767C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E1E0A1441AF1E19C00F6E213 /* Build configuration list for PBXNativeTarget "ARTests" */ = {
+		E1805C161ED933750049767C /* Build configuration list for PBXNativeTarget "ARTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E1E0A1451AF1E19C00F6E213 /* Debug */,
-				E1E0A1461AF1E19C00F6E213 /* Release */,
+				E1805C171ED933750049767C /* Debug */,
+				E1805C181ED933750049767C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E1E0A1181AF1E19C00F6E213 /* Project object */;
+	rootObject = E1805BE51ED933750049767C /* Project object */;
 }

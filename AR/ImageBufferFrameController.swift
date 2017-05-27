@@ -8,24 +8,20 @@
 
 import AVFoundation
 
-protocol ImageBufferReceiver
-{
+protocol ImageBufferReceiver {
     func onImageBuffer(buffer: CVImageBuffer!)
 }
 
-class ImageBufferFrameController: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
-{
+class ImageBufferFrameController: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     var delegate: ImageBufferReceiver!
 
-    init(delegate: ImageBufferReceiver!)
-    {
+    init(delegate: ImageBufferReceiver!) {
         super.init()
         self.delegate = delegate
     }
 
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!)
-    {
-        var buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        delegate.onImageBuffer(buffer)
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        let buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+        self.delegate.onImageBuffer(buffer: buffer)
     }
 }

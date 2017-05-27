@@ -8,95 +8,91 @@
 
 import AVFoundation
 
-class VideoCameraController
-{
+class VideoCameraController {
     var session: AVCaptureSession!
     var deviceInput: AVCaptureDeviceInput!
     var deviceOutput: AVCaptureVideoDataOutput!
 
-    var queue: dispatch_queue_t!
+    var queue: DispatchQueue!
 
-    init(delegate: AVCaptureVideoDataOutputSampleBufferDelegate!)
-    {
+    init(delegate: AVCaptureVideoDataOutputSampleBufferDelegate!) {
         session = AVCaptureSession()
-        queue = dispatch_queue_create("VideoCameraController queue", DISPATCH_QUEUE_SERIAL)
+        queue = DispatchQueue(label: "VideoCameraController queue")
 
-        dispatch_async(queue,
-        {
-            self.setup(delegate)
-        })
+        queue.async {
+            self.setup(delegate: delegate)
+        }
     }
 
-    func setup(delegate: AVCaptureVideoDataOutputSampleBufferDelegate!)
-    {
-        self.session.beginConfiguration()
+    func setup(delegate: AVCaptureVideoDataOutputSampleBufferDelegate!) {
+        do {
+            self.session.beginConfiguration()
 
-        // Add Input
-        var devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo)
-        var device: AVCaptureDevice!
+            // Add Input
+            let device = defaultCamera()
 
-        for object in devices
-        {
-            let captureDevice = object as! AVCaptureDevice
-            if (captureDevice.position == AVCaptureDevicePosition.Back)
-            {
-                device = captureDevice
-                break
+            self.deviceInput = try AVCaptureDeviceInput(device: device)
+
+            if (self.session.canAddInput(self.deviceInput)) {
+                self.session.addInput(self.deviceInput)
             }
+
+            // Add Output
+            let settings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
+
+            self.deviceOutput = AVCaptureVideoDataOutput()
+            self.deviceOutput.videoSettings = settings
+            self.deviceOutput.alwaysDiscardsLateVideoFrames = true
+
+            self.deviceOutput.setSampleBufferDelegate(delegate, queue: self.queue)
+
+            if (self.session.canAddOutput(self.deviceOutput)) {
+                self.session.addOutput(self.deviceOutput)
+            }
+
+            self.session.commitConfiguration()
+        } catch let error {
+            print("Failed to setup VideoCaptureController, error \(error)")
         }
-
-        self.deviceInput = AVCaptureDeviceInput.deviceInputWithDevice(device, error: nil) as! AVCaptureDeviceInput;
-
-        if (self.session.canAddInput(self.deviceInput))
-        {
-            self.session.addInput(self.deviceInput)
-        }
-
-        // Add Output
-        var settings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
-
-        self.deviceOutput = AVCaptureVideoDataOutput()
-        self.deviceOutput.videoSettings = settings
-        self.deviceOutput.alwaysDiscardsLateVideoFrames = true
-
-        self.deviceOutput.setSampleBufferDelegate(delegate, queue: self.queue)
-
-        if (self.session.canAddOutput(self.deviceOutput))
-        {
-            self.session.addOutput(self.deviceOutput)
-        }
-
-        self.session.commitConfiguration()
     }
 
-    func start()
-    {
-        if (self.session.running)
-        {
+    func start() {
+        if (self.session.isRunning) {
             return
         }
 
-        dispatch_async(self.queue,
-        {
+        queue.async {
             self.session.startRunning()
-        })
+        }
     }
 
-    func stop()
-    {
-        if (!self.session.running)
-        {
+    func stop() {
+        if (!self.session.isRunning) {
             return
         }
 
-        dispatch_async(self.queue,
-        {
+        queue.async {
             self.session.stopRunning()
-        })
+        }
     }
 
-    func createPreviewLayer() -> AVCaptureVideoPreviewLayer
-    {
-        return AVCaptureVideoPreviewLayer.layerWithSession(session) as! AVCaptureVideoPreviewLayer
+    func createPreviewLayer() -> AVCaptureVideoPreviewLayer {
+        return AVCaptureVideoPreviewLayer(session: self.session)
+    }
+
+    private func defaultCamera() -> AVCaptureDevice? {
+        if let device = AVCaptureDevice.defaultDevice(withDeviceType: .builtInDualCamera,
+                                                      mediaType: AVMediaTypeVideo,
+                                                      position: .back) {
+            return device
+        }
+
+        if let device = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera,
+                                                      mediaType: AVMediaTypeVideo,
+                                                      position: .back) {
+            return device
+        }
+
+        return nil
     }
 }

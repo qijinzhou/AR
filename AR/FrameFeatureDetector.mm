@@ -6,12 +6,11 @@
 //  Copyright (c) 2015 Q. All rights reserved.
 //
 
-#import "FrameFeatureDetector.h"
+#import <opencv2/opencv.hpp>
 
 #import <Foundation/Foundation.h>
 
-#import <opencv2/opencv.hpp>
-
+#import "FrameFeatureDetector.h"
 #import "CVPixelBufferLock.h"
 #import "EdgeDetector.h"
 

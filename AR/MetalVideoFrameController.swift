@@ -15,38 +15,38 @@ protocol MetalTextureReceiver
 
 class MetalVideoFrameController: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
 {
-    var textureCache: CVMetalTextureCacheRef!
+    var textureCache: CVMetalTextureCache!
+    var lastCVMetalTexture: CVMetalTexture?
 
     var delegate: MetalTextureReceiver!
 
-    init(device: MTLDevice!, delegate: MetalTextureReceiver!)
-    {
+    init(device: MTLDevice!, delegate: MetalTextureReceiver!) {
         super.init()
 
-        var unamagedCache: Unmanaged<CVMetalTextureCache>?
-        CVMetalTextureCacheCreate(nil, nil, device, nil, &unamagedCache)
-        textureCache = unamagedCache!.takeRetainedValue()
+        var textureCache: CVMetalTextureCache?
+        let status = CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &textureCache)
+        if status == kCVReturnSuccess {
+            self.textureCache = textureCache!
+        } else {
+            print("Failed to create CVMetalTextureCache, status \(status)")
+        }
 
         self.delegate = delegate
     }
 
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!)
-    {
-        var buffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-
-        var width = CVPixelBufferGetWidth(buffer)
-        var height = CVPixelBufferGetHeight(buffer)
-
-        var unmanagedTexture: Unmanaged<CVMetalTexture>?
-
-        var status = CVMetalTextureCacheCreateTextureFromImage(nil, textureCache, buffer, nil, MTLPixelFormat.BGRA8Unorm, width, height, 0, &unmanagedTexture)
-
-        if (status != kCVReturnSuccess.value)
-        {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        guard let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
+        let width = CVPixelBufferGetWidth(buffer)
+        let height = CVPixelBufferGetHeight(buffer)
 
-        var texture = CVMetalTextureGetTexture(unmanagedTexture!.takeRetainedValue())
-        delegate.onTexture(texture)
+        var cvMetalTexture: CVMetalTexture?
+        CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, self.textureCache, buffer, nil, MTLPixelFormat.bgra8Unorm, width, height, 0, &cvMetalTexture)
+        if let cvMetalTexture = cvMetalTexture,
+            let texture = CVMetalTextureGetTexture(cvMetalTexture) {
+            delegate.onTexture(texture: texture)
+            lastCVMetalTexture = cvMetalTexture
+        }
     }
 }

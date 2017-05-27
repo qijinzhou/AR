@@ -7,21 +7,20 @@
 //
 
 import AVFoundation
-import Metal
-import QuartzCore
 import UIKit
+import Metal
+import MetalKit
 
-class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferReceiver
-{
-    let device = { MTLCreateSystemDefaultDevice() }()
-    let metalLayer = { CAMetalLayer() }()
+class GameViewController: UIViewController, MTKViewDelegate {
 
-    let textLayer = { CATextLayer() }()
+    var device: MTLDevice! = nil
 
-    var textureCache: CVMetalTextureCacheRef!
+    var textureCache: CVMetalTextureCache! = nil
+    var lastCVMetalTexture: CVMetalTexture! = nil
+
+    let inflightSemaphore = DispatchSemaphore(value: 1)
 
     var commandQueue: MTLCommandQueue! = nil
-    var timer: CADisplayLink! = nil
     var pipelineState: MTLRenderPipelineState! = nil
 
     let vertexData: [Float] = [
@@ -48,45 +47,41 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
     var grayscaleTextureFilter: GrayscaleTextureFilter! = nil
     var boxBlurTextureFilter: BoxBlurTextureFilter! = nil
 
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
-        metalLayer.device = device
-        metalLayer.pixelFormat = .BGRA8Unorm
-        metalLayer.framebufferOnly = true
+        device = MTLCreateSystemDefaultDevice()
+        guard device != nil else {
+            print("Metal is not supported on this device")
+            self.view = UIView(frame: self.view.frame)
+            return
+        }
 
-        self.resize()
+        let view = self.view as! MTKView
+        view.device = device
+        view.delegate = self
 
-        view.layer.insertSublayer(metalLayer, atIndex: 0)
-        view.opaque = true
-        view.backgroundColor = nil
-
-        commandQueue = device.newCommandQueue()
+        commandQueue = device.makeCommandQueue()
         commandQueue.label = "render command queue"
 
-        let defaultLibrary = device.newDefaultLibrary()
-        let vertexProgram = defaultLibrary?.newFunctionWithName("basicVertexShader")
-        let fragmentProgram = defaultLibrary?.newFunctionWithName("basicFragmentShader")
+        let defaultLibrary = device.newDefaultLibrary()!
+        let vertexProgram = defaultLibrary.makeFunction(name: "basicVertexShader")!
+        let fragmentProgram = defaultLibrary.makeFunction(name: "basicFragmentShader")!
 
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexProgram
         pipelineDescriptor.fragmentFunction = fragmentProgram
-        pipelineDescriptor.colorAttachments[0].pixelFormat = .BGRA8Unorm
-        pipelineDescriptor.sampleCount = 1
+        pipelineDescriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat
+        pipelineDescriptor.sampleCount = view.sampleCount
 
-        var pipelineError : NSError?
-        pipelineState = device.newRenderPipelineStateWithDescriptor(pipelineDescriptor, error: &pipelineError)
-        if (pipelineState == nil)
-        {
-            println("Failed to create pipeline state, error \(pipelineError)")
+        do {
+            try pipelineState = device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+        } catch let pipelineError {
+            print("Failed to create pipeline state, error \(pipelineError)")
         }
 
-        vertexBuffer = device.newBufferWithBytes(vertexData, length: vertexData.count * sizeofValue(vertexData[0]), options: nil)
+        vertexBuffer = device.makeBuffer(bytes:vertexData, length: vertexData.count * MemoryLayout.size(ofValue: vertexData[0]), options: [])
         vertexBuffer.label = "vertices"
-
-        timer = CADisplayLink(target: self, selector: Selector("renderLoop"))
-//        timer.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
 
         videoFrameController = MetalVideoFrameController(device: device, delegate:self)
 
@@ -97,144 +92,95 @@ class GameViewController: UIViewController, MetalTextureReceiver, ImageBufferRec
 
         frameFeatureDetector = FrameFeatureDetector()
 
-        var unamagedCache: Unmanaged<CVMetalTextureCache>?
-        CVMetalTextureCacheCreate(nil, nil, device, nil, &unamagedCache)
-        textureCache = unamagedCache!.takeRetainedValue()
+        var textureCache: CVMetalTextureCache?
+        let status = CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &textureCache)
+        if status == kCVReturnSuccess {
+            self.textureCache = textureCache!
+        } else {
+            print("Failed to create CVMetalTextureCache, status \(status)")
+        }
 
-//        let previewLayer = videoCameraController.createPreviewLayer()
-//        previewLayer.frame = view.bounds
-//        view.layer.addSublayer(previewLayer)
+        //        let previewLayer = videoCameraController.createPreviewLayer()
+        //        previewLayer.frame = view.bounds
+        //        view.layer.addSublayer(previewLayer)
 
-        textLayer.foregroundColor = UIColor.whiteColor().CGColor
-        textLayer.frame = view.frame
-        textLayer.string = "fps"
-
-        grayscaleTextureFilter = GrayscaleTextureFilter()
-        boxBlurTextureFilter = BoxBlurTextureFilter()
-
-        view.layer.insertSublayer(textLayer, atIndex: 1)
+        grayscaleTextureFilter = GrayscaleTextureFilter(device: device)
+        boxBlurTextureFilter = BoxBlurTextureFilter(device: device)
 
         videoCameraController.start()
     }
 
-    override func viewDidLayoutSubviews()
-    {
-        self.resize()
-    }
-
-    override func prefersStatusBarHidden() -> Bool
-    {
-        return true
-    }
-
-    deinit
-    {
+    deinit {
         videoCameraController.stop()
-
-        timer.invalidate()
     }
 
-    func resize()
-    {
-        if (view.window == nil)
-        {
-            return
-        }
-
-        let window = view.window!
-        let nativeScale = window.screen.nativeScale
-        view.contentScaleFactor = nativeScale
-        metalLayer.frame = view.layer.frame
-
-        var drawableSize = view.bounds.size
-        drawableSize.width = drawableSize.width * CGFloat(view.contentScaleFactor)
-        drawableSize.height = drawableSize.height * CGFloat(view.contentScaleFactor)
-        metalLayer.drawableSize = drawableSize
+    func update() {
     }
 
-    func renderLoop()
-    {
-        autoreleasepool
-        {
-            self.render()
-        }
-    }
+    func draw(in view: MTKView) {
+        let _ = inflightSemaphore.wait(timeout: DispatchTime.distantFuture)
 
-    func render()
-    {
         self.update()
 
-        if (texture == nil)
-        {
-            return
-        }
-
-        let commandBuffer = commandQueue.commandBuffer()
+        let commandBuffer = commandQueue.makeCommandBuffer()
         commandBuffer.label = "command buffer"
 
-        let drawable = metalLayer.nextDrawable()
-        let renderPassDescriptor = MTLRenderPassDescriptor()
-        renderPassDescriptor.colorAttachments[0].texture = drawable.texture
-        renderPassDescriptor.colorAttachments[0].loadAction = .Clear
-        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 0, green: 0, blue: 0, alpha: 0)
-        renderPassDescriptor.colorAttachments[0].storeAction = .Store
-
-        let renderEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor)!
-        renderEncoder.label = "render encoder"
-        renderEncoder.pushDebugGroup("draw frame")
-
-        renderEncoder.setRenderPipelineState(pipelineState)
-        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, atIndex: 0)
-        renderEncoder.setFragmentTexture(texture, atIndex: 0)
-        renderEncoder.drawPrimitives(.Triangle, vertexStart: 0, vertexCount: vertexData.count, instanceCount: 2)
-
-        renderEncoder.popDebugGroup()
-        renderEncoder.endEncoding()
-
-        commandBuffer.addCompletedHandler
-        {
-            [weak self] commandBuffer in
-            if let strongSelf = self
-            {
+        commandBuffer.addCompletedHandler{ [weak self] commandBuffer in
+            if let strongSelf = self {
+                strongSelf.inflightSemaphore.signal()
             }
-            return
         }
 
-        commandBuffer.presentDrawable(drawable)
+        if let texture = texture, let renderPassDescriptor = view.currentRenderPassDescriptor, let currentDrawable = view.currentDrawable {
+            let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
+            renderEncoder.label = "render encoder"
+            renderEncoder.pushDebugGroup("draw frame")
+
+            renderEncoder.setRenderPipelineState(pipelineState)
+            renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
+            renderEncoder.setFragmentTexture(texture, at: 0)
+            renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexData.count, instanceCount: 2)
+
+            renderEncoder.popDebugGroup()
+            renderEncoder.endEncoding()
+
+            commandBuffer.present(currentDrawable)
+        }
+
         commandBuffer.commit()
     }
 
-    func update()
-    {
+    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
     }
 
-    func onTexture(texture: MTLTexture!)
-    {
+}
+
+extension GameViewController: MetalTextureReceiver {
+    func onTexture(texture: MTLTexture!) {
         //self.texture = texture
-        //self.texture = grayscaleTextureFilter.filter(texture)
-        self.texture = boxBlurTextureFilter.filter(texture)
-        renderLoop()
+        //self.texture = grayscaleTextureFilter.filter(inTexture: texture)
+        let _ = inflightSemaphore.wait(timeout: DispatchTime.distantFuture)
+        self.texture = boxBlurTextureFilter.filter(inTexture: texture)
+        inflightSemaphore.signal()
     }
+}
 
-    func onImageBuffer(buffer: CVImageBuffer!)
-    {
-        var edgeBuffer = frameFeatureDetector.detect(buffer)
+extension GameViewController: ImageBufferReceiver {
+    func onImageBuffer(buffer: CVImageBuffer!) {
+        frameFeatureDetector.detect(buffer)
+        let width = CVPixelBufferGetWidth(buffer)
+        let height = CVPixelBufferGetHeight(buffer)
 
-        var width = CVPixelBufferGetWidth(buffer)
-        var height = CVPixelBufferGetHeight(buffer)
+        var cvMetalTexture: CVMetalTexture?
 
-        var unmanagedTexture: Unmanaged<CVMetalTexture>?
+        CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache, buffer, nil, MTLPixelFormat.bgra8Unorm, width, height, 0, &cvMetalTexture)
 
-        var status = CVMetalTextureCacheCreateTextureFromImage(nil, textureCache, buffer, nil, MTLPixelFormat.BGRA8Unorm, width, height, 0, &unmanagedTexture)
-
-        if (status != kCVReturnSuccess.value)
-        {
-            return
+        if let cvMetalTexture = cvMetalTexture,
+            let texture = CVMetalTextureGetTexture(cvMetalTexture) {
+            let _ = inflightSemaphore.wait(timeout: DispatchTime.distantFuture)
+            self.texture = texture
+            self.lastCVMetalTexture = cvMetalTexture
+            inflightSemaphore.signal()
         }
-
-        var texture = CVMetalTextureGetTexture(unmanagedTexture!.takeRetainedValue())
-        self.texture = texture
-
-        renderLoop()
     }
 }

@@ -7,42 +7,45 @@
 //
 
 import AVFoundation
+import Metal
 
-class BoxBlurTextureFilter
-{
-    let device = { MTLCreateSystemDefaultDevice() }()
+class BoxBlurTextureFilter {
+    var device: MTLDevice!
 
     var commandQueue: MTLCommandQueue!
     var computePipeline: MTLComputePipelineState!
 
-    init()
-    {
-        commandQueue = device.newCommandQueue()
+    init(device: MTLDevice!) {
+        self.device = device
+
+        commandQueue = device.makeCommandQueue()
         commandQueue.label = "compute command queue"
 
         let defaultLibrary = device.newDefaultLibrary()!
-        let filterShader = defaultLibrary.newFunctionWithName("boxBlur")!
+        let filterShader = defaultLibrary.makeFunction(name: "boxBlur")!
 
-        var error: NSError?
-        computePipeline = device.newComputePipelineStateWithFunction(filterShader, error: &error)!
+        do {
+            computePipeline = try device.makeComputePipelineState(function: filterShader)
+        } catch let error {
+            print("Failed to create pipeline state, error \(error)")
+        }
     }
 
-    func filter(inTexture: MTLTexture!) -> MTLTexture!
-    {
+    func filter(inTexture: MTLTexture!) -> MTLTexture! {
         let textureDescriptor = MTLTextureDescriptor()
-        textureDescriptor.pixelFormat = MTLPixelFormat.BGRA8Unorm
+        textureDescriptor.pixelFormat = MTLPixelFormat.bgra8Unorm
         textureDescriptor.width = inTexture.width
         textureDescriptor.height = inTexture.height
 
-        let outTexture = device.newTextureWithDescriptor(textureDescriptor)
+        let outTexture = device.makeTexture(descriptor: textureDescriptor)
 
-        let commandBuffer = commandQueue.commandBuffer()
+        let commandBuffer = commandQueue.makeCommandBuffer()
 
-        let computeCommandEncoder = commandBuffer.computeCommandEncoder()
+        let computeCommandEncoder = commandBuffer.makeComputeCommandEncoder()
 
         computeCommandEncoder.setComputePipelineState(computePipeline)
-        computeCommandEncoder.setTexture(inTexture, atIndex: 0)
-        computeCommandEncoder.setTexture(outTexture, atIndex: 1)
+        computeCommandEncoder.setTexture(inTexture, at: 0)
+        computeCommandEncoder.setTexture(outTexture, at: 1)
 
         let threadgroupSize = MTLSize(width: 60, height: 68, depth: 1)
         let threadsPerThreadgroup = MTLSize(width: 32, height: 16, depth: 1)
@@ -53,7 +56,7 @@ class BoxBlurTextureFilter
 
         commandBuffer.commit()
         commandBuffer.waitUntilCompleted()
-        
+
         return outTexture
     }
 }
